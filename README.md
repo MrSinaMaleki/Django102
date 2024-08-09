@@ -1,2 +1,2 @@
 # Dajngo102
-The Second of Dajgno
+The Second CW of Django
