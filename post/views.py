@@ -27,9 +27,26 @@ def create_post(request):
 
 
 def delete(request, post_id):
-
     obj = get_object_or_404(Post, id=post_id)
 
     obj.delete()
     print("post was deleted!")
     return redirect('home')
+
+
+def update(request, post_id):
+
+    obj = get_object_or_404(Post, id=post_id)
+
+    form = CreatePostForm(request.POST or None, instance=obj)
+    context = dict()
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+
+    # add form dictionary to context
+    context["form"] = form
+
+    return render(request, "update_view.html", context)
