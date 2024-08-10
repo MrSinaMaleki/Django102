@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from .forms import CreatePostForm
 from django.urls import reverse
@@ -24,3 +24,12 @@ def create_post(request):
     # context['target_url'] = reverse('home')
 
     return render(request, 'add_posts.html', context)
+
+
+def delete(request, post_id):
+
+    obj = get_object_or_404(Post, id=post_id)
+
+    obj.delete()
+    print("post was deleted!")
+    return redirect('home')
