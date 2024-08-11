@@ -18,7 +18,7 @@ def create_post(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-        return redirect('home')
+            return redirect('home')
 
     context['form'] = form
     # context['target_url'] = reverse('home')
@@ -45,6 +45,8 @@ def update(request, post_id):
     if form.is_valid():
         form.save()
         return redirect('home')
+    else:
+        pass
 
     # add form dictionary to context
     context["form"] = form
