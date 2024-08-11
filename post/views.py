@@ -13,9 +13,11 @@ def home(request):
 def create_post(request):
     # context = {'form': CreatePostForm()}
     context = dict()
-    form = CreatePostForm(request.POST or None)
+    form = CreatePostForm()
 
     if request.method == "POST":
+        form = CreatePostForm(request.POST, request.FILES)
+
         if form.is_valid():
             form.save()
             return redirect('home')
