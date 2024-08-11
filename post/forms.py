@@ -1,9 +1,14 @@
 from django import forms
-from .models import *
+from .models import Post
 
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = "__all__"
-        exclude = ["created_at", "updated_at"]
+        fields = ["title", "description", "author"]
+        # exclude = ["created_at", "updated_at"]
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form__field"}),
+            "description": forms.TextInput(attrs={"class": "form__field"}),
+            "author": forms.TextInput(attrs={"class": "form__field"})
+        }
